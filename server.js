@@ -26,12 +26,13 @@ app.post('/todos', (req, res) => {
 // Update a todo
 app.put('/todos/:id', (req, res) => {
   const id = parseInt(req.params.id);
-  const { title } = req.body;
+  const { title, done } = req.body;
   const todo = todos.find(todo => todo.id === id);
   if (!todo) {
     return res.status(404).json({ error: 'Todo not found' });
   }
   todo.title = title;
+  todo.done = done;
   res.json(todo);
 });
 
